@@ -66,6 +66,8 @@ public class SecurityConfig {
                 .formLogin(form -> form.disable())
                 .httpBasic(withDefaults())
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.GET, "/v3/api-docs", "/v3/api-docs.yaml",
+                                "/v3/api-docs/swagger-config", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/trocarsenha/*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/").hasRole("MANUTENCAO")

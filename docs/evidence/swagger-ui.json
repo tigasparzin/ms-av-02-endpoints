@@ -1,0 +1,35 @@
+{
+  "timeUtc": "2026-10-27T00:13:58.413Z",
+  "url": "http://127.0.0.1:8080/swagger-ui/index.html",
+  "operationCount": 5,
+  "checks": [
+    {
+      "step": "valid-login",
+      "status": 200,
+      "renderedServerResponseStatus": 200,
+      "executedThroughSwaggerUi": true
+    },
+    {
+      "step": "invalid-login",
+      "status": 401,
+      "renderedServerResponseStatus": 401,
+      "executedThroughSwaggerUi": true
+    },
+    {
+      "step": "maintenance-authorized-list",
+      "status": 200,
+      "renderedServerResponseStatus": 200,
+      "executedThroughSwaggerUi": true
+    },
+    {
+      "step": "maintenance-cannot-unlock",
+      "status": 403,
+      "renderedServerResponseStatus": 403,
+      "executedThroughSwaggerUi": true
+    }
+  ],
+  "schemasReviewed": true,
+  "sensitiveDataInDocumentation": false,
+  "authorizationPersistedAfterReload": false,
+  "screenshot": "docs/evidence/swagger-ui.png"
+}

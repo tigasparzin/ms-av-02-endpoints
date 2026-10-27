@@ -1,11 +1,11 @@
 # AV02 — Segurança e Observabilidade
 
-Etapas 1 a 6: estrutura Spring Boot 4.1.1, Java alvo 17, JDBC, Spring Security,
+Etapas 1 a 7: estrutura Spring Boot 4.1.1, Java alvo 17, JDBC, Spring Security,
 H2 em arquivo, login, bloqueio, gerenciamento de usuários, métricas, Prometheus e Grafana.
 O enunciado original está em `ENUNCIADO.md` e foi preservado.
 Os cinco endpoints do enunciado e os três indicadores estão implementados.
 Prometheus e dashboard Grafana estão integrados em ambiente local isolado.
-OpenAPI/Swagger pertence à próxima etapa.
+Os cinco endpoints também possuem documentação OpenAPI e Swagger UI.
 
 ## Etapa 6 — Prometheus e Grafana
 
@@ -62,9 +62,57 @@ O banco principal e a AV01 foram preservados. Para encerrar, preservando os dado
 .\observability\stack.ps1 stop
 ```
 
-Nenhuma pendência funcional na Etapa 6. A Etapa 7 — OpenAPI/Swagger aguarda autorização.
+A Etapa 6 foi concluída. A documentação OpenAPI/Swagger está descrita a seguir.
 
 ## Ambiente Windows
+
+### OpenAPI e Swagger UI — Etapa 7
+
+Dependência `springdoc-openapi-starter-webmvc-ui` **3.1.1**, conforme o exemplo do
+professor, mantendo Spring Boot 4.1.1 e Java alvo 17.
+
+Com a aplicação em execução:
+
+- Swagger UI: http://127.0.0.1:8080/swagger-ui/index.html
+- JSON OpenAPI: http://127.0.0.1:8080/v3/api-docs
+- YAML OpenAPI: http://127.0.0.1:8080/v3/api-docs.yaml
+- `/swagger-ui.html` redireciona com HTTP 302 para `/swagger-ui/index.html`.
+
+| Operação | Acesso | Respostas documentadas |
+|---|---|---|
+| `POST /login` | Público | 200, 400, 401 |
+| `PUT /trocarsenha/{userid}` | Público; valida a senha atual | 204, 400, 401 |
+| `POST /` | HTTP Basic, ROLE_MANUTENCAO | 201, 400, 401, 403, 409 |
+| `PUT /unlock/{userid}` | HTTP Basic, ROLE_ADMIN | 204, 401, 403, 404 |
+| `GET /` | HTTP Basic, ROLE_MANUTENCAO | 200, 401, 403 |
+
+`userid` corresponde ao username. A listagem mantém o formato existente:
+`[{"username":"usuario-exemplo"}]`, contendo somente usernames. As demais respostas
+de negócio não têm corpo. As senhas dos exemplos da documentação são fictícias.
+
+Para testar no Swagger, use **Try it out**, preencha o corpo e clique em **Execute**.
+O botão **Authorize** fornece HTTP Basic apenas às operações protegidas;
+as roles continuam sendo verificadas pelo Spring Security. Login não cria sessão
+nem token. A autorização não é persistida pela interface.
+
+Use a stack de `observability` para operações de demonstração com banco isolado.
+Não execute tentativas incorretas ou alterações de usuários no banco principal.
+As credenciais fictícias da stack permanecem protegidas em `.local`; nunca copie
+senhas para o README, screenshots ou arquivos de evidência. A interface pode exibir
+o corpo e o cabeçalho Authorization ao executar uma chamada: não compartilhe essa
+tela sem antes limpar a autorização e recarregar a página.
+
+Apenas os caminhos GET necessários à documentação foram liberados; as permissões
+de negócio e o Actuator em `127.0.0.1:9099` continuam preservados. Consulte
+[o relatório da Etapa 7](ETAPA7_VALIDACAO.md) para testes, evidências e limitações.
+
+[Especificação JSON gerada](docs/openapi.json) ·
+[Evidência dos testes pela interface](docs/evidence/swagger-ui.json)
+
+![Swagger UI real com os cinco endpoints](docs/evidence/swagger-ui.png)
+
+Antes de recompilar o JAR no Windows, encerre a stack com
+`.\observability\stack.ps1 stop`; depois do build, inicie-a novamente com `start`.
 
 Execute na pasta AV02, na unidade D:. O script `dev.ps1` usa o JDK 21 existente
 em `C:\Program Files\Java\jdk-21` e o Maven existente em
@@ -382,5 +430,5 @@ de dados sensíveis e concorrência em cadastro, troca de senha e desbloqueio.
 Os testes de métricas comparam deltas dos Counters e também os valores exportados
 por HTTP, sem depender da ordem dos cenários ou alterar o banco normal.
 
-OpenAPI/Swagger será adicionado somente na próxima etapa, após autorização.
+Etapa 8 — Revisão e entrega será iniciada somente após autorização.
 A publicação das Etapas 1 a 6 neste repositório foi autorizada após a validação.

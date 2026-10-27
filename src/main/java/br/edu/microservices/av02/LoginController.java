@@ -1,5 +1,10 @@
 package br.edu.microservices.av02;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.HttpStatus;
@@ -22,6 +27,14 @@ public class LoginController {
     }
 
     @PostMapping("/login")
+    @Operation(summary = "Autentica um usuário", tags = "Login",
+            description = "Público. Valida username e senha. Não cria sessão ou token. "
+                    + "Credenciais inválidas e contas bloqueadas retornam a mesma resposta 401.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Autenticação válida", content = @Content),
+            @ApiResponse(responseCode = "401", description = "Credenciais inválidas ou usuário bloqueado", content = @Content),
+            @ApiResponse(responseCode = "400", description = "JSON ou campos obrigatórios inválidos", content = @Content)
+    })
     public ResponseEntity<Void> login(@Valid @RequestBody LoginRequest request) {
         boolean authenticated = loginService.login(request.username(), request.senha());
         // The transactional service has committed; validation and HTTP Basic never reach this point.
@@ -36,5 +49,10 @@ public class LoginController {
         return ResponseEntity.badRequest().build();
     }
 
-    public record LoginRequest(@NotBlank String username, @NotBlank String senha) { }
+    public record LoginRequest(
+            @Schema(description = "Username da conta", example = "usuario-exemplo", minLength = 1,
+                    requiredMode = Schema.RequiredMode.REQUIRED) @NotBlank String username,
+            @Schema(description = "Senha; exemplo exclusivamente fictício", example = "senha-ficticia-exemplo",
+                    format = "password", accessMode = Schema.AccessMode.WRITE_ONLY,
+                    requiredMode = Schema.RequiredMode.REQUIRED) @NotBlank String senha) { }
 }
