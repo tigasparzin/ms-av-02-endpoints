@@ -1,0 +1,29 @@
+{
+  "timeUtc": "2026-10-26T23:47:48.9318353Z",
+  "uid": "av02-import-36b9b61a824f",
+  "title": "AV-02 — Segurança e Observabilidade — importação verificada",
+  "url": "http://127.0.0.1:3000/d/av02-import-36b9b61a824f",
+  "panels": [
+    {
+      "datasourceUid": "av02-prometheus",
+      "query": "av02_login_success_total{job=\"av02\",instance=\"127.0.0.1:9099\"}",
+      "title": "Logins válidos"
+    },
+    {
+      "datasourceUid": "av02-prometheus",
+      "query": "av02_login_failure_total{job=\"av02\",instance=\"127.0.0.1:9099\"}",
+      "title": "Logins inválidos"
+    },
+    {
+      "datasourceUid": "av02-prometheus",
+      "query": "av02_users_locked{job=\"av02\",instance=\"127.0.0.1:9099\"}",
+      "title": "Usuários bloqueados"
+    }
+  ],
+  "values": {
+    "success": 2.0,
+    "failure": 5.0,
+    "locked": 1.0
+  },
+  "temporaryCopyRemoved": true
+}

@@ -1,0 +1,154 @@
+[
+  {
+    "step": "baseline",
+    "timeUtc": "2026-10-26T23:49:09.2219469Z",
+    "actuator": {
+      "success": 0.0,
+      "failure": 0.0,
+      "locked": 0.0
+    },
+    "prometheus": {
+      "success": 0.0,
+      "failure": 0.0,
+      "locked": 0.0
+    },
+    "grafana": {
+      "success": 0.0,
+      "failure": 0.0,
+      "locked": 0.0
+    }
+  },
+  {
+    "step": "valid-login",
+    "timeUtc": "2026-10-26T23:49:14.4840287Z",
+    "actuator": {
+      "success": 1.0,
+      "failure": 0.0,
+      "locked": 0.0
+    },
+    "prometheus": {
+      "success": 1.0,
+      "failure": 0.0,
+      "locked": 0.0
+    },
+    "grafana": {
+      "success": 1.0,
+      "failure": 0.0,
+      "locked": 0.0
+    }
+  },
+  {
+    "step": "first-invalid-login",
+    "timeUtc": "2026-10-26T23:49:19.6836080Z",
+    "actuator": {
+      "success": 1.0,
+      "failure": 1.0,
+      "locked": 0.0
+    },
+    "prometheus": {
+      "success": 1.0,
+      "failure": 1.0,
+      "locked": 0.0
+    },
+    "grafana": {
+      "success": 1.0,
+      "failure": 1.0,
+      "locked": 0.0
+    }
+  },
+  {
+    "step": "second-invalid-login-locks",
+    "timeUtc": "2026-10-26T23:49:23.8939209Z",
+    "actuator": {
+      "success": 1.0,
+      "failure": 2.0,
+      "locked": 1.0
+    },
+    "prometheus": {
+      "success": 1.0,
+      "failure": 2.0,
+      "locked": 1.0
+    },
+    "grafana": {
+      "success": 1.0,
+      "failure": 2.0,
+      "locked": 1.0
+    }
+  },
+  {
+    "step": "blocked-login-counter-only",
+    "timeUtc": "2026-10-26T23:49:29.1306743Z",
+    "actuator": {
+      "success": 1.0,
+      "failure": 3.0,
+      "locked": 1.0
+    },
+    "prometheus": {
+      "success": 1.0,
+      "failure": 3.0,
+      "locked": 1.0
+    },
+    "grafana": {
+      "success": 1.0,
+      "failure": 3.0,
+      "locked": 1.0
+    }
+  },
+  {
+    "step": "administrative-unlock",
+    "timeUtc": "2026-10-26T23:49:34.3674435Z",
+    "actuator": {
+      "success": 1.0,
+      "failure": 3.0,
+      "locked": 0.0
+    },
+    "prometheus": {
+      "success": 1.0,
+      "failure": 3.0,
+      "locked": 0.0
+    },
+    "grafana": {
+      "success": 1.0,
+      "failure": 3.0,
+      "locked": 0.0
+    }
+  },
+  {
+    "step": "http-basic-does-not-count",
+    "timeUtc": "2026-10-26T23:49:34.7224442Z",
+    "actuator": {
+      "success": 1.0,
+      "failure": 3.0,
+      "locked": 0.0
+    },
+    "prometheus": {
+      "success": 1.0,
+      "failure": 3.0,
+      "locked": 0.0
+    },
+    "grafana": {
+      "success": 1.0,
+      "failure": 3.0,
+      "locked": 0.0
+    }
+  },
+  {
+    "step": "representative-final-state",
+    "timeUtc": "2026-10-26T23:49:39.0597273Z",
+    "actuator": {
+      "success": 2.0,
+      "failure": 5.0,
+      "locked": 1.0
+    },
+    "prometheus": {
+      "success": 2.0,
+      "failure": 5.0,
+      "locked": 1.0
+    },
+    "grafana": {
+      "success": 2.0,
+      "failure": 5.0,
+      "locked": 1.0
+    }
+  }
+]

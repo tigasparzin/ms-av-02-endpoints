@@ -1,0 +1,25 @@
+{
+  "timeUtc": "2026-10-26T23:47:02.930Z",
+  "method": "Grafana UI > Export > Export as code > Download file",
+  "model": "Classic",
+  "shareWithAnotherInstance": true,
+  "downloadedFilename": "AV-02 — Segurança e Observabilidade-1793058422531.json",
+  "sha256": "dd7f8f2c572743e5dd4fbafcb8117c89b8834de461d42e65c57eaf9903512c2c",
+  "inputNames": [
+    "DS_PROMETHEUS_AV02"
+  ],
+  "panels": [
+    {
+      "title": "Logins válidos",
+      "query": "av02_login_success_total{job=\"av02\",instance=\"127.0.0.1:9099\"}"
+    },
+    {
+      "title": "Logins inválidos",
+      "query": "av02_login_failure_total{job=\"av02\",instance=\"127.0.0.1:9099\"}"
+    },
+    {
+      "title": "Usuários bloqueados",
+      "query": "av02_users_locked{job=\"av02\",instance=\"127.0.0.1:9099\"}"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "timeUtc": "2026-10-26T23:48:34.5094588Z",
+  "prometheusVersion": "3.13.5",
+  "grafanaVersion": "13.2.4",
+  "target": "UP",
+  "scrapeUrl": "http://127.0.0.1:9099/actuator/prometheus",
+  "lastError": "",
+  "scrapeInterval": "5s",
+  "actuator": {
+    "success": 0.0,
+    "failure": 0.0,
+    "locked": 1.0
+  },
+  "prometheus": {
+    "success": 0.0,
+    "failure": 0.0,
+    "locked": 1.0
+  },
+  "grafana": {
+    "success": 0.0,
+    "failure": 0.0,
+    "locked": 1.0
+  },
+  "datasourceHealth": "OK",
+  "dashboardTitle": "AV-02 — Segurança e Observabilidade",
+  "refresh": "5s",
+  "panels": [
+    {
+      "query": "av02_login_success_total{job=\"av02\",instance=\"127.0.0.1:9099\"}",
+      "instant": true,
+      "title": "Logins válidos",
+      "type": "stat"
+    },
+    {
+      "query": "av02_login_failure_total{job=\"av02\",instance=\"127.0.0.1:9099\"}",
+      "instant": true,
+      "title": "Logins inválidos",
+      "type": "stat"
+    },
+    {
+      "query": "av02_users_locked{job=\"av02\",instance=\"127.0.0.1:9099\"}",
+      "instant": true,
+      "title": "Usuários bloqueados",
+      "type": "stat"
+    }
+  ],
+  "normalDatabaseSha256": "138293443A3EFD5F9A85A4508BE5DB3862223E387F53646F9FCD752F76F5CB92"
+}
